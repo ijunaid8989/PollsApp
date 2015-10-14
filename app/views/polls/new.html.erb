@@ -15,7 +15,9 @@
 <ul class="list-group">
 	<% @polls.each do |poll| %>
 	  <li class="list-group-item">
-		    <span class="badge"><%= link_to "show" ,  %></span>
+		    <span class="badge"><%= link_to "show" , poll_path(poll) %></span>
+		    <span class="badge"><%= link_to "edit" , edit_poll_path(poll) %></span>
+		    <span class="badge"><%= link_to "delete", poll , method: :delete , data: {confirm: "Are you sure about this?"} %></span>
 		    <%= poll.title %>
 	  </li>
   <% end -%>
