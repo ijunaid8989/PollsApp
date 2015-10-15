@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
 
 	def new
 		@question = @poll.questions.build
+	5.times {@question.possible_answers.build}
 		@questions = Question.all
 	end
 	def create
