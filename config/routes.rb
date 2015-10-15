@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :questions
-  resources :polls
+  
+  resources :polls do 
+    resources :questions  
+  end
 
 
   get "newpoll" => "polls#new" , :as => "newpoll"

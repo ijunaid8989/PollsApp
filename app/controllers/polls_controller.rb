@@ -3,6 +3,7 @@ class PollsController < ApplicationController
 	def new
 		@poll = Poll.new	
 		@polls = Poll.all
+		@questions = Question.all
 	end
 
 	def create

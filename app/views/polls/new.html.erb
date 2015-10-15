@@ -18,7 +18,18 @@
 		    <span class="badge"><%= link_to "show" , poll_path(poll) %></span>
 		    <span class="badge"><%= link_to "edit" , edit_poll_path(poll) %></span>
 		    <span class="badge"><%= link_to "delete", poll , method: :delete , data: {confirm: "Are you sure about this?"} %></span>
+		    <span class="badge"><%= link_to "Add Question" , new_poll_question_path(poll) %></span>
 		    <%= poll.title %>
 	  </li>
   <% end -%>
 </ul>
+<h2>All Questions</h2>
+<div class="panel panel-default topical">
+<%= @questions.each do |question| %>
+  <div class="panel-body">
+    <%= @question.title %>
+    <%= @question.kind %>
+    <%= @question.poll_id %>
+  </div>
+<% end -%>
+</div>

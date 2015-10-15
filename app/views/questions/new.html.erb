@@ -1,0 +1,30 @@
+<div class="container topical">
+	<div class="col-xs-6">
+		<%= form_for [@poll,@question] do |f| -%>
+			<div class="form-group">
+				<%= f.text_field :title , placeholder: "Title", class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<% @kind_questions.each do |option| %>
+					<%= f.radio_button :kind, option[1] %>
+					<%= option[0] %>
+				<% end -%>
+			</div>
+			<div class="form-group">
+				<%= f.submit "Create", class: "btn btn-success" %>
+			</div>
+		<% end -%>
+	</div>
+</div>
+
+<h1>All Questions</h1>
+<ul class="list-group">
+	<% @questions.each do |question| %>
+	  <li class="list-group-item">
+		    <span class="badge"><%= link_to "show" , question_path(question) %></span>
+		    <span class="badge"><%= link_to "edit" , edit_question_path(question) %></span>
+		    <span class="badge"><%= link_to "delete", poll , method: :delete , data: {confirm: "Are you sure about this?"} %></span>
+		    <%= question.title %>
+	  </li>
+  <% end -%>
+</ul>
