@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
 		@questions = Question.all
 	end
 	def create
-		@question = Question.new question_params
+		@question = @poll.questions.build question_params
 		if @question.save
 			redirect_to root_url
 		end
@@ -21,27 +21,34 @@ class QuestionsController < ApplicationController
 	def show
 		@question = Question.find params[:id]
 	end
+
+	def update
+		@question = Question.find params[:id]
+		if @question.update_attributes question_params
+			redirect_to root_url
+		end
+	end
+
 	def destroy
 		Question.find(params[:id]).destroy
 		redirect_to root_url
 	end
 
-private 
+	private 
 
-def question_params
-	params.require(:question).permit(:title,:kind,:poll_id)
+	def question_params
+		params.require(:question).permit(:title,:kind,:poll_id)
+	end
+
+	def set_poll
+		@poll = Poll.find(params[:poll_id])
+	end
+
+	def set_kind_options
+		@kind_questions = [
+			['Open Question','open'],
+			['Multiple Choice', 'choice']
+		]
+	end
+
 end
-
-def set_poll
-	@poll = Poll.find(params[:poll_id])
-end
-
-def set_kind_options
-	@kind_questions = [
-		['Open Question','open'],
-		['Multiple Choice', 'choice']
-	]
-end
-
-end
-

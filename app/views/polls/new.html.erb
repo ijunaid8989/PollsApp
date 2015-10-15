@@ -25,11 +25,15 @@
 </ul>
 <h2>All Questions</h2>
 <div class="panel panel-default topical">
-<%= @questions.each do |question| %>
-  <div class="panel-body">
-    <%= @question.title %>
-    <%= @question.kind %>
-    <%= @question.poll_id %>
-  </div>
-<% end -%>
+	<ul>
+		<% @questions.each do |question| %>
+		<li>
+		  <div class="panel-body">
+		    <%= question.title %><br>
+		    <%= question.kind %><br>
+		    <%= question.poll_id %>
+		  </div>
+		</li>
+		<% end -%>
+	</ul>
 </div>
